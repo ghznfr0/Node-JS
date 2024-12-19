@@ -3,6 +3,7 @@ const { buffer } = require("node:stream/consumers");
 const sumRequest = (req, res) => {
     console.log('in sum request handlwr', req.url);
     const body = []
+    let result;
     req.on('data', (chunks) => {
       body.push(chunks)
     })
@@ -10,10 +11,12 @@ const sumRequest = (req, res) => {
     const bodyStr = Buffer.concat(body).toString()
     const params = new URLSearchParams(bodyStr)
     const bodyObj = Object.fromEntries(params)
-    const result = Number(bodyObj.first) + Number(bodyObj.second)
+    result = Number(bodyObj.first) + Number(bodyObj.second)
     console.log(bodyObj);
     
     console.log(result);
+    
+    })
     res.setHeader('Content-Type', 'text/html');
   res.write(`
     <html>
@@ -25,6 +28,5 @@ const sumRequest = (req, res) => {
     </html>
   `);
   return res.end();
-    })
 }
 module.exports = sumRequest

@@ -42,16 +42,22 @@ res.write('</form>')
       // }
       const bodyObj = Object.fromEntries(params)
       console.log(bodyObj);
-      fs.writeFileSync('user.txt', JSON.stringify(bodyObj))
+      fs.writeFile('user.txt', JSON.stringify(bodyObj), error => {
+        console.log("data written");
+        res.statusCode = 302
+    res.setHeader('Location', '/')
+    return res.end()
+      })
     })
 
     
-    res.statusCode = 302
-    res.setHeader('Location', '/')
+    
+} else {
+  res.write('<body><h1>Page Not Found</h1></body>')
+  res.end()
 }
 
-res.write('<body><h1>Page Not Found</h1></body>')
-res.end()
+
 }
 
 module.exports = handler;
