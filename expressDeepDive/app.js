@@ -30,12 +30,7 @@ app.get('/', (req, res, next) => {
 app.get('/contact-us', (req, res, next) => {
   console.log('Handling /contact-us for GET');
   res.send(`
-    <h1>please give your details here</h1>
-    <form action="/contact-us" method="POST">
-    <input type="text" placeholder="Enter Name" name="username"  />
-    <input type="email" placeholder="Enter Email" name="email"  />
-    <input type="submit" value="Submit">
-  </form>
+    
     `)
 })
 
