@@ -37,6 +37,19 @@ exports.getBookings = (req, res, next) => {
     // res.redirect('/favourites')
   }
 
+  exports.postRemoveFromFavourite = (req, res, next) => {
+    console.log('came to favourite', req.body);
+    const homeId = req.params.homeId
+    Favourite.deleteById(homeId, error => {
+      if(error) {
+        console.log('error while removing from favourites', error);
+        
+      }
+      res.redirect('/favourites')
+    })
+  }
+  
+
   exports.getHomeDetails = (req, res, next) => {
     const homeId = req.params.homeId
     Home.findById(homeId, home => {

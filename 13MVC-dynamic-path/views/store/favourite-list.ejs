@@ -17,9 +17,13 @@
               <p class="text-yellow-500 font-medium">Rating: <%= home.rating %> / 5</p>
               
             </div>
+            <form action="/favourites/delete/<%=home.id%>" method="POST">
+              <button class="bg-red-600 p-2 rounded" type="submit">Remove From Favourite </button>
+            </form>
           </li>
         <% }) %>
       </ul>
+      
     </main>
     
   </body>
